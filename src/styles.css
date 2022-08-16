@@ -6,5 +6,12 @@
 .App .content .controls {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding-bottom: 10px;
 }
+
+.App .content .controls .flag-select  {
+  width: 80px !important;
+}
+
+
