@@ -70,6 +70,7 @@ function CalculatorDemo() {
           <SconeCalculator
             offsetRoute="https://www.scone.ai/offsets/intro/"
             showSideBar={showSideBar}
+            showSkip={showSkip}
             locale={locale}
             onCompletion={handleCompletion}
             onStepChange={handleStepChange}
