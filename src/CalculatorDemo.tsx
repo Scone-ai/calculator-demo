@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
+import ReactFlagsSelect from "react-flags-select";
 import { SconeButton, SconeCalculator } from "scone-js-common";
+
 import "./styles.css";
+
+const countries = ["NL", "GB"];
 
 function CalculatorDemo() {
   const [showSideBar, setShowSideBar] = useState(true);
   const [showSkip, setShowSkip] = useState(true);
   const [completed, setCompleted] = useState(false);
+  const [locale, setLocale] = useState<"en-US" | "nl-NL">("en-US");
 
   const handleCompletion = (footPrintDetails: any) => {
     console.log("completed", footPrintDetails);
@@ -43,12 +49,28 @@ function CalculatorDemo() {
             >
               {showSkip ? "Hide Skip" : "Show Skip"}
             </SconeButton>
+
+            <ReactFlagsSelect
+              className="flag-select"
+              countries={countries}
+              selected={locale === "en-US" ? "GB" : "NL"}
+              showSelectedLabel={false}
+              showOptionLabel={true}
+              customLabels={{ NL: "NL", GB: "EN" }}
+              onSelect={(country: string) => {
+                if (country === "NL") {
+                  setLocale("nl-NL");
+                } else if (country === "GB") {
+                  setLocale("en-US");
+                }
+              }}
+            />
           </div>
 
           <SconeCalculator
             offsetRoute="https://www.scone.ai/offsets/intro/"
             showSideBar={showSideBar}
-            locale={"nl-NL"}
+            locale={locale}
             onCompletion={handleCompletion}
             onStepChange={handleStepChange}
             onSkip={handleSkip}
